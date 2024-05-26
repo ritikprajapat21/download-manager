@@ -2,10 +2,10 @@
 import os
 import shutil
 
-path = '../Downloads/'
+path = '/home/ritik/Downloads'
 
 audio_format = ['mp3', 'm4a', 'wac', 'aac', 'wma']
-text_format = ['txt', 'doc', 'docx', 'pdf', 'md', 'json', 'csv', 'xls']
+text_format = ['txt', 'doc', 'docx', 'pdf', 'md', 'json', 'csv', 'xls', 'xlsx']
 image_format = ['jpeg', 'jpg', 'png', 'wpeg', 'gif', 'tiff', 'bmp', 'svg']
 compressed_format = ['zip', '7z', 'tar', 'gzip', 'rar', 'apk', 'deb','pptx']
 video_format = ['mp4', 'mkv', 'mov', 'avi']
@@ -16,7 +16,7 @@ def fileExist(file_path):
 def renameFile(file):
     arr = file.split('.')
     arr[0] += 'new'
-    new_name = arr.join('')
+    new_name = '.'.join(arr)
     return new_name
 
 for file in os.listdir(path):
@@ -37,11 +37,14 @@ for file in os.listdir(path):
             destination = 'other'
 
         destination_path = os.path.join(path, destination)
+        source_file_path = os.path.join(path, file)
+        destination_file_path = os.path.join(destination_path, file)
 
-        if (fileExist(destination)):
+        if (fileExist(destination_file_path)):
             file = renameFile(file)
+            destination_file_path = os.path.join(destination_path, file)
 
         if not os.path.exists(destination_path):
             os.mkdir(destination_path)
 
-        shutil.move(os.path.join(path, file), os.path.join(destination_path, file))
+        shutil.move(source_file_path, destination_file_path)
