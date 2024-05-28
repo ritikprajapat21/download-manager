@@ -4,11 +4,11 @@ import shutil
 
 path = '/home/ritik/Downloads'
 
-audio_format = ['mp3', 'm4a', 'wac', 'aac', 'wma']
-text_format = ['txt', 'doc', 'docx', 'pdf', 'md', 'json', 'csv', 'xls', 'xlsx']
-image_format = ['jpeg', 'jpg', 'png', 'wpeg', 'gif', 'tiff', 'bmp', 'svg']
-compressed_format = ['zip', '7z', 'tar', 'gzip', 'rar', 'apk', 'deb','pptx']
-video_format = ['mp4', 'mkv', 'mov', 'avi']
+audio_format = ['.mp3', '.m4a', '.wac', '.aac', '.wma']
+text_format = ['.txt', '.doc', '.docx', '.pdf', '.md', '.json', '.csv', '.xls', '.xlsx', '.pptx']
+image_format = ['.jpeg', '.jpg', '.png', '.wpeg', '.gif', '.tiff', '.bmp', '.svg']
+compressed_format = ['.zip', '.7z', '.tar', '.gzip', '.rar', '.apk', '.deb', '.appimage']
+video_format = ['.mp4', '.mkv', '.mov', '.avi']
 
 def fileExist(file_path):
     return os.path.exists(file_path)
@@ -22,7 +22,7 @@ def renameFile(file):
 for file in os.listdir(path):
     if (os.path.isfile(os.path.join(path, file))):
         destination = './'
-        ext = file.split('.')[1]
+        ext = os.path.splitext(file)[1]
         if (ext in audio_format):
             destination = 'audio'
         elif ext in text_format:
